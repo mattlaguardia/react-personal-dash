@@ -8,7 +8,7 @@ var App = React.createClass ({
     return (
       <div>
         <Clock />
-        This is the ReactDash App
+        <div className='app-header'>This is the my ReactDash app</div>
         <Library />
       </div>
     )

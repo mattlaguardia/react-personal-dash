@@ -13,19 +13,13 @@ const Library = React.createClass({
   render () {
 
     var libraries = [
+      { name: 'React', url: 'http://facebook.github.io/react/'},
       { name: 'Backbone.js', url: 'http://documentcloud.github.io/backbone/'},
       { name: 'AngularJS', url: 'https://angularjs.org/'},
-      { name: 'jQuery', url: 'http://jquery.com/'},
-      { name: 'Prototype', url: 'http://www.prototypejs.org/'},
-      { name: 'React', url: 'http://facebook.github.io/react/'},
       { name: 'Ember', url: 'http://emberjs.com/'},
-      { name: 'Knockout.js', url: 'http://knockoutjs.com/'},
-      { name: 'Dojo', url: 'http://dojotoolkit.org/'},
-      { name: 'Mootools', url: 'http://mootools.net/'},
-      { name: 'Underscore', url: 'http://documentcloud.github.io/underscore/'},
+      { name: 'Express', url: 'http://expressjs.com/'},
       { name: 'Lodash', url: 'http://lodash.com/'},
       { name: 'Moment', url: 'http://momentjs.com/'},
-      { name: 'Express', url: 'http://expressjs.com/'},
       { name: 'Koa', url: 'http://koajs.com/'}
     ]
 
@@ -38,11 +32,11 @@ const Library = React.createClass({
     }
 
     return (
-      <div>Library Search Bar Goes Here <br />
+      <div>
         <input type='text' value={this.state.searchString} onChange={this.handleChange} placeholder='Search'/>
         <ul>
           { libraries.map( function(l){
-            return <li key={l.id}>{l.name} <a href={l.url}>{l.url}</a></li>
+            return <li key={l.id}>{l.name} <a target='_blank' href={l.url}>{l.url}</a></li>
           })}
         </ul>
       </div>

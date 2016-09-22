@@ -4,9 +4,19 @@ const Clock = React.createClass ({
 
   setTime: function() {
     var currentDate = new Date()
-    var hours = currentDate.getUTCHours() + 5
-    var mins = currentDate.getUTCMinutes()
-    var secs = currentDate.getUTCSeconds()
+    var hours = '' + currentDate.getHours()
+    var mins = '' + currentDate.getUTCMinutes()
+    var secs = '' + currentDate.getUTCSeconds()
+
+    if( hours.split('').length < 2 ){
+      hours = '0' + hours
+    }
+    if( mins.split('').length < 2 ){
+      mins = '0' + mins
+    }
+    if( secs.split('').length < 2 ){
+      secs = '0' + secs
+    }
 
     this.setState({
       hours: hours,
@@ -28,7 +38,7 @@ const Clock = React.createClass ({
   render () {
     return (
       <div className='clock-div'>
-        <h1>{this.state.hours}:{this.state.mins}:{this.state.secs}</h1>
+        {this.state.hours}:{this.state.mins}:{this.state.secs}
       </div>
     )
   }

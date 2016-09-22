@@ -71,7 +71,11 @@
 	      'div',
 	      null,
 	      _react2.default.createElement(_Clock2.default, null),
-	      'This is the ReactDash App',
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'app-header' },
+	        'This is the my ReactDash app'
+	      ),
 	      _react2.default.createElement(_Library2.default, null)
 	    );
 	  }
@@ -21467,9 +21471,19 @@
 	
 	  setTime: function setTime() {
 	    var currentDate = new Date();
-	    var hours = currentDate.getUTCHours() + 5;
-	    var mins = currentDate.getUTCMinutes();
-	    var secs = currentDate.getUTCSeconds();
+	    var hours = '' + currentDate.getHours();
+	    var mins = '' + currentDate.getUTCMinutes();
+	    var secs = '' + currentDate.getUTCSeconds();
+	
+	    if (hours.split('').length < 2) {
+	      hours = '0' + hours;
+	    }
+	    if (mins.split('').length < 2) {
+	      mins = '0' + mins;
+	    }
+	    if (secs.split('').length < 2) {
+	      secs = '0' + secs;
+	    }
 	
 	    this.setState({
 	      hours: hours,
@@ -21492,15 +21506,11 @@
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'clock-div' },
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        this.state.hours,
-	        ':',
-	        this.state.mins,
-	        ':',
-	        this.state.secs
-	      )
+	      this.state.hours,
+	      ':',
+	      this.state.mins,
+	      ':',
+	      this.state.secs
 	    );
 	  }
 	});
@@ -21537,7 +21547,7 @@
 	
 	  render: function render() {
 	
-	    var libraries = [{ name: 'Backbone.js', url: 'http://documentcloud.github.io/backbone/' }, { name: 'AngularJS', url: 'https://angularjs.org/' }, { name: 'jQuery', url: 'http://jquery.com/' }, { name: 'Prototype', url: 'http://www.prototypejs.org/' }, { name: 'React', url: 'http://facebook.github.io/react/' }, { name: 'Ember', url: 'http://emberjs.com/' }, { name: 'Knockout.js', url: 'http://knockoutjs.com/' }, { name: 'Dojo', url: 'http://dojotoolkit.org/' }, { name: 'Mootools', url: 'http://mootools.net/' }, { name: 'Underscore', url: 'http://documentcloud.github.io/underscore/' }, { name: 'Lodash', url: 'http://lodash.com/' }, { name: 'Moment', url: 'http://momentjs.com/' }, { name: 'Express', url: 'http://expressjs.com/' }, { name: 'Koa', url: 'http://koajs.com/' }];
+	    var libraries = [{ name: 'React', url: 'http://facebook.github.io/react/' }, { name: 'Backbone.js', url: 'http://documentcloud.github.io/backbone/' }, { name: 'AngularJS', url: 'https://angularjs.org/' }, { name: 'Ember', url: 'http://emberjs.com/' }, { name: 'Express', url: 'http://expressjs.com/' }, { name: 'Lodash', url: 'http://lodash.com/' }, { name: 'Moment', url: 'http://momentjs.com/' }, { name: 'Koa', url: 'http://koajs.com/' }];
 	
 	    var searchString = this.state.searchString.trim().toLowerCase();
 	
@@ -21550,8 +21560,6 @@
 	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      'Library Search Bar Goes Here ',
-	      _react2.default.createElement('br', null),
 	      _react2.default.createElement('input', { type: 'text', value: this.state.searchString, onChange: this.handleChange, placeholder: 'Search' }),
 	      _react2.default.createElement(
 	        'ul',
@@ -21564,7 +21572,7 @@
 	            ' ',
 	            _react2.default.createElement(
 	              'a',
-	              { href: l.url },
+	              { target: '_blank', href: l.url },
 	              l.url
 	            )
 	          );
