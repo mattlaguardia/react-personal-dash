@@ -4,7 +4,7 @@ const Clock = React.createClass ({
 
   setTime: function() {
     var currentDate = new Date()
-    var hours = currentDate.getUTCHours() - 7
+    var hours = currentDate.getUTCHours() + 5
     var mins = currentDate.getUTCMinutes()
     var secs = currentDate.getUTCSeconds()
 

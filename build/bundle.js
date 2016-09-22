@@ -21467,7 +21467,7 @@
 	
 	  setTime: function setTime() {
 	    var currentDate = new Date();
-	    var hours = currentDate.getUTCHours() - 7;
+	    var hours = currentDate.getUTCHours() + 5;
 	    var mins = currentDate.getUTCMinutes();
 	    var secs = currentDate.getUTCSeconds();
 	
@@ -21525,11 +21525,51 @@
 	
 	var Library = _react2.default.createClass({
 	  displayName: 'Library',
+	
+	
+	  getInitialState: function getInitialState() {
+	    return { searchString: '' };
+	  },
+	
+	  handleChange: function handleChange(e) {
+	    this.setState({ searchString: e.target.value });
+	  },
+	
 	  render: function render() {
+	
+	    var libraries = [{ name: 'Backbone.js', url: 'http://documentcloud.github.io/backbone/' }, { name: 'AngularJS', url: 'https://angularjs.org/' }, { name: 'jQuery', url: 'http://jquery.com/' }, { name: 'Prototype', url: 'http://www.prototypejs.org/' }, { name: 'React', url: 'http://facebook.github.io/react/' }, { name: 'Ember', url: 'http://emberjs.com/' }, { name: 'Knockout.js', url: 'http://knockoutjs.com/' }, { name: 'Dojo', url: 'http://dojotoolkit.org/' }, { name: 'Mootools', url: 'http://mootools.net/' }, { name: 'Underscore', url: 'http://documentcloud.github.io/underscore/' }, { name: 'Lodash', url: 'http://lodash.com/' }, { name: 'Moment', url: 'http://momentjs.com/' }, { name: 'Express', url: 'http://expressjs.com/' }, { name: 'Koa', url: 'http://koajs.com/' }];
+	
+	    var searchString = this.state.searchString.trim().toLowerCase();
+	
+	    if (searchString.length > 0) {
+	      libraries = libraries.filter(function (l) {
+	        return l.name.toLowerCase().match(searchString);
+	      });
+	    }
+	
 	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      'Library Search Bar Goes Here'
+	      'Library Search Bar Goes Here ',
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement('input', { type: 'text', value: this.state.searchString, onChange: this.handleChange, placeholder: 'Search' }),
+	      _react2.default.createElement(
+	        'ul',
+	        null,
+	        libraries.map(function (l) {
+	          return _react2.default.createElement(
+	            'li',
+	            { key: l.id },
+	            l.name,
+	            ' ',
+	            _react2.default.createElement(
+	              'a',
+	              { href: l.url },
+	              l.url
+	            )
+	          );
+	        })
+	      )
 	    );
 	  }
 	});
